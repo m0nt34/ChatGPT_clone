@@ -1,0 +1,60 @@
+@use "../variables.scss" as *;
+.homepage{
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  height: 100%;
+
+  .left{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+    color: $font-white;
+    h1{
+      display: flex;
+      font-size: 78px;
+      background-image: linear-gradient(to right, #00ffcc, #00b3ff);
+
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    h3{
+      font-weight: 400;
+      max-width: 70%;
+    }
+    a{
+      padding: 12px 25px;
+      background-color: #008cff;
+      color: $font-white;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-top: 20px;
+      transition: background 0.5s,color 0.3s;
+      &:hover{
+        background-color: $white;
+        color: #008cff;
+      }
+    }
+  }
+  .right{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    height: 100%;
+    flex: 1;
+    .img_cont{
+
+      img{
+        width: 550px;
+        height: 550px;
+      }
+    }
+  }
+}

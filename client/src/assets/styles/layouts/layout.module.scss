@@ -1,0 +1,31 @@
+@use "../variables.scss" as *;
+
+.rootLayout {
+  padding: 16px 64px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo_cont {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      gap: 8px;
+      font-size: 24px;
+      color: $font-white;
+      .logo {
+        height: 32px;
+        width: 32px;
+      }
+    }
+  }
+
+  main {
+    flex: 1;
+    overflow: hidden;
+  }
+}

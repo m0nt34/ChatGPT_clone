@@ -1,10 +1,12 @@
-import React from 'react'
-import style from '../../assets/styles/pages/signin.module.scss'
-
-const SignIn = () => {
+import React from "react";
+import style from "../../assets/styles/pages/signin.module.scss";
+import { SignIn } from "@clerk/clerk-react";
+const SignInPage = () => {
   return (
-    <div>SignIn</div>
-  )
-}
+    <div className={style.signInPage}>
+      <SignIn path="/sign-in" signUpUrl="/sign-up/"/>
+    </div>
+  );
+};
 
-export default SignIn
+export default SignInPage;

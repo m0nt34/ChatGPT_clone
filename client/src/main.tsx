@@ -8,6 +8,8 @@ import Dashboard from "./pages/dashboardpage/Dashboard.tsx";
 import Chat from "./pages/chatpage/Chat.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import DashboardLayout from "./layouts/DashboardLayout.tsx";
+import SignInPage from "./pages/signin/SignIn.tsx";
+import SignUpPage from "./pages/signup/Signup.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/sign-in/*",
+        element: <SignInPage />,
+      },
+      {
+        path: "/sign-up/*",
+        element: <SignUpPage />,
       },
       {
         element: <DashboardLayout />,
