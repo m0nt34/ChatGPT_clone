@@ -1,59 +1,306 @@
 @use "../variables.scss" as *;
-.homepage{
+@use "../breakpoints.scss" as breakpoints;
+
+.homepage {
   display: flex;
   align-items: center;
-  gap: 100px;
-  height: 100%;
+  gap: 3.125rem;
+  min-height: 85vh;
+  font-size: 16px;
 
-  .left{
+  .left {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 1rem;
     text-align: center;
     color: $font-white;
-    h1{
-      display: flex;
-      font-size: 78px;
-      background-image: linear-gradient(to right, #00ffcc, #00b3ff);
 
+    h1 {
+      display: flex;
+      font-size: 7.5rem;
+      background-image: linear-gradient(to right, #00ffcc, #00b3ff);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
-    h3{
+
+    h2 {
+      font-size: 2.25rem;
+    }
+
+    h3 {
       font-weight: 400;
       max-width: 70%;
+      font-size: 1.25rem;
     }
-    a{
-      padding: 12px 25px;
+
+    a {
+      padding: 0.75rem 1.5625rem;
       background-color: #008cff;
       color: $font-white;
       border-radius: 999px;
-      font-size: 14px;
-      margin-top: 20px;
-      transition: background 0.5s,color 0.3s;
-      &:hover{
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-top: 1.125rem;
+      transition: background 0.5s, color 0.3s;
+
+      &:hover {
         background-color: $white;
         color: #008cff;
       }
     }
   }
-  .right{
-    
+
+  .right {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 100px;
+    gap: 6.25rem;
     height: 100%;
     flex: 1;
-    .img_cont{
+    .img_cont {
+      position: relative;
+      img {
+        width: 90%;
+        height: auto;
+      }
+      .chat {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        background-color: $mid-grey;
+        position: absolute;
+        font-size: 16px;
+        color: $font-white;
+        font-weight: 600;
+        bottom: 0;
+        right: 0;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        img {
+          height: 40px;
+          width: 40px;
+          aspect-ratio: 1/1;
+          border-radius: 99px;
+          overflow: hidden;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+.terms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  color: $white;
+  bottom: 15px;
+  gap: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  .logo {
+    height: 40px;
+    width: 40px;
+    @include breakpoints.sm {
+      height: 30px;
+      width: 30px;
+    }
+  }
+  .links {
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+    color: $font-grey;
+    font-weight: bold;
+    width: max-content;
+    @include breakpoints.sm {
+      font-size: 14px;
+    }
+  }
+}
+@include breakpoints.lg {
+  .homepage {
+    .left {
+      gap: 0.75rem;
+      h1 {
+        font-size: 6rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        max-width: 80%;
+        font-size: 1rem;
+      }
+      a {
+        padding: 0.7rem 1.4rem;
+        font-size: 1.3rem;
+      }
+    }
+    .right {
+      .chat {
+        font-size: 14px;
+        bottom: -25px;
+      }
+    }
+  }
+}
 
-      img{
-        width: 550px;
-        height: 550px;
+@include breakpoints.md {
+  .homepage {
+    gap: 2rem;
+    .left {
+      gap: 0.5rem;
+      h1 {
+        font-size: 5rem;
+      }
+      h2 {
+        font-size: 1.25rem;
+      }
+      h3 {
+        max-width: 80%;
+        font-size: 0.8rem;
+      }
+      a {
+        padding: 0.6rem 1.2rem;
+        font-size: 1.1rem;
+      }
+    }
+    .right {
+      .chat {
+        font-size: 13px;
+        bottom: -25px;
+        img {
+          height: 30px;
+          width: 30px;
+        }
+      }
+    }
+  }
+}
+@include breakpoints.sm {
+  .homepage {
+    gap: 1.4rem;
+    .left {
+      gap: 0.5rem;
+      h1 {
+        font-size: 4rem;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+      h3 {
+        max-width: 100%;
+        font-size: 0.8rem;
+      }
+      a {
+        padding: 0.5rem 1.2rem;
+        font-size: 1rem;
+      }
+    }
+    .right {
+      .chat {
+        font-size: 13px;
+        bottom: -30px;
+        img {
+          height: 30px;
+          width: 30px;
+        }
+      }
+    }
+  }
+}
+@include breakpoints.xs {
+  .homepage {
+    margin-top: 3rem;
+    gap: 4rem;
+    height: fit-content;
+    flex-direction: column;
+    .left {
+      gap: 0.5rem;
+      flex: 0;
+      h1 {
+        font-size: 6rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        max-width: 80%;
+        font-size: 1rem;
+      }
+      a {
+        padding: 0.7rem 1.4rem;
+        font-size: 1.3rem;
+      }
+    }
+    .right {
+      flex: 0;
+      .img_cont {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        img {
+          width: 80%;
+          height: auto;
+        }
+      }
+
+      .chat {
+        font-size: 15px;
+        bottom: -25px;
+        img {
+          height: 35px;
+          width: 35px;
+        }
+      }
+    }
+  }
+}
+@include breakpoints.xxs {
+  .homepage {
+    margin-top: 1rem;
+    gap: 2rem;
+    height: fit-content;
+    flex-direction: column;
+    .left {
+      gap: 0.3rem;
+      flex: 0;
+      h1 {
+        font-size: 5rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      h3 {
+        max-width: 100%;
+        font-size: 0.8rem;
+      }
+      a {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+      }
+    }
+    .right {
+      flex: 0;
+      .img_cont {
+        display: flex;
+        width: 100%;
+      }
+
+      .chat {
+        font-size: 13px;
+        bottom: -25px;
+        img {
+          height: 30px;
+          width: 30px;
+        }
       }
     }
   }

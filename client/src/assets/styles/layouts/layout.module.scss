@@ -1,15 +1,18 @@
 @use "../variables.scss" as *;
+@use "../breakpoints.scss" as breakpoints;
 
 .rootLayout {
-  padding: 16px 64px;
-  height: 100vh;
+  padding: 16px 46px;
+  padding-bottom: 46px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    padding-bottom: 16px;
+    z-index: 100;
     .logo_cont {
       display: flex;
       align-items: center;
@@ -25,7 +28,31 @@
   }
 
   main {
+    height: 100%;
     flex: 1;
-    overflow: hidden;
+  }
+}
+@include breakpoints.md {
+  .rootLayout {
+    padding: 16px 36px;
+    padding-bottom: 36px;
+  }
+}
+@include breakpoints.sm {
+  .rootLayout {
+    padding: 16px 28px;
+    padding-bottom: 48px;
+  }
+}
+@include breakpoints.xs {
+  .rootLayout {
+    padding: 16px 20px;
+    padding-bottom: 48px;
+  }
+}
+@include breakpoints.xxs {
+  .rootLayout {
+    padding: 16px;
+    padding-bottom: 48px;
   }
 }
