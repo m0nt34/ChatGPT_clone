@@ -1,8 +1,10 @@
 @use "./breakpoints.scss" as breakpoints;
+@use "./variables.scss" as *;
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scrollbar-color: $mid-white-grey;
 }
 
 body {
@@ -16,30 +18,19 @@ a {
   color: inherit;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-@include breakpoints.xs{
-  ::-webkit-scrollbar {
-    width: 6px;
+.customHover {
+  display: inherit;
+  gap: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+  flex-wrap: inherit;
+  white-space: inherit;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  transition: background 100ms;
+  width: 100%;
+  &:hover {
+    background-color: #212121;
   }
-
-}
-@include breakpoints.xxs{
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-
-}
-::-webkit-scrollbar-track {
-  background: #333333;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888888;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555555;
 }

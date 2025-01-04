@@ -11,10 +11,9 @@ const DashboardLayout = () => {
       navigate("/sign-in");
     }
   }, [isLoaded, userId, navigate]);
-if(!isLoaded) return "loading..."
+  if (!isLoaded) return "loading...";
   return (
     <div className={style.dashboardLayout}>
-      <span className={style.menu}>MENU</span>
       <div className={style.content}>
         <Outlet />
       </div>

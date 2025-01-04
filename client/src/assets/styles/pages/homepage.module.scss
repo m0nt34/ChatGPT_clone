@@ -7,7 +7,25 @@
   gap: 3.125rem;
   min-height: 85vh;
   font-size: 16px;
-
+  user-select: none;
+  padding: 0 46px;
+  padding-bottom: 96px;
+  @include breakpoints.md {
+    padding: 0 36px;
+    padding-bottom: 96px;
+  }
+  @include breakpoints.sm {
+    padding: 0 28px;
+    padding-bottom: 96px;
+  }
+  @include breakpoints.xs {
+    padding: 0 20px;
+    padding-bottom: 96px;
+  }
+  @include breakpoints.xxs {
+    padding: 0;
+    padding-bottom: 96px;
+  }
   .left {
     flex: 1;
     display: flex;
@@ -63,9 +81,10 @@
     flex: 1;
     .img_cont {
       position: relative;
-      img {
+      .bot_img {
         width: 90%;
         height: auto;
+        animation: float 10s infinite ease-in-out;
       }
       .chat {
         display: flex;
@@ -78,7 +97,7 @@
         color: $font-white;
         font-weight: 600;
         bottom: 0;
-        right: 0;
+        left: 0;
         padding: 0.75rem 1rem;
         border-radius: 6px;
         img {
@@ -92,38 +111,56 @@
       }
     }
   }
-}
-.terms {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  color: $white;
-  bottom: 15px;
-  gap: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  .logo {
-    height: 40px;
-    width: 40px;
-    @include breakpoints.sm {
-      height: 30px;
-      width: 30px;
-    }
-  }
-  .links {
+  .terms {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    color: $white;
+    bottom: 15px;
     gap: 10px;
-    font-size: 16px;
-    color: $font-grey;
-    font-weight: bold;
-    width: max-content;
-    @include breakpoints.sm {
-      font-size: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    .logo {
+      height: 40px;
+      width: 40px;
+      @include breakpoints.sm {
+        height: 30px;
+        width: 30px;
+      }
+    }
+    .links {
+      display: flex;
+      gap: 10px;
+      font-size: 16px;
+      color: $font-grey;
+      font-weight: bold;
+      width: max-content;
+      @include breakpoints.sm {
+        font-size: 14px;
+      }
     }
   }
 }
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-16px);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-26px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 @include breakpoints.lg {
   .homepage {
     .left {

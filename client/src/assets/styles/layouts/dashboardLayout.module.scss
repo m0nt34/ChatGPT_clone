@@ -1,0 +1,15 @@
+.dashboardLayout{
+  display: flex;
+  gap: 50px;
+  padding-top: 20px;
+  height: 100%;
+  overflow-y: hidden;
+  .menu{
+    flex: 1;
+  }
+
+  .content{
+    flex: 4;
+
+  }
+}

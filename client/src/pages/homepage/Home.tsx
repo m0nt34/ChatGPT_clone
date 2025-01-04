@@ -20,9 +20,14 @@ const Home = () => {
       </div>
       <div className={style.right}>
         <div className={style.img_cont}>
-          <img src={botIMG} alt="" />
+          <img
+            className={style.bot_img}
+            src={botIMG}
+            alt=""
+            draggable={false}
+          />
           <div className={style.chat}>
-            <img src={botImg ? botIMG : humanIMG} alt="" />
+            <img src={botImg ? botIMG : humanIMG} alt="" draggable={false} />
             <TypeAnimation
               sequence={[
                 "What can you do?",
