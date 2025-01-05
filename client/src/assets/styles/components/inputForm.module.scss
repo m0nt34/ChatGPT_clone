@@ -1,0 +1,87 @@
+@use "../variables.scss" as *;
+.main_cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .input_field {
+    max-width: 38rem;
+    width: 100%;
+    border-radius: 1.5rem;
+    padding: 0 1rem;
+    background-color: $mid-dark-grey;
+    padding: 4px 10px;
+    form {
+      display: flex;
+      flex-direction: column;
+      .input_cont {
+        display: flex;
+        align-items: center;
+        min-height: 40px;
+        padding: 0.5rem 2rem 0.5rem 0.5rem;
+        textarea {
+          width: 100%;
+          font-size: 1rem;
+          line-height: 1.5rem;
+          color: $font-white;
+          outline: none;
+          background-color: transparent;
+          border: none;
+          resize: none;
+          font-family: sans-serif;
+          height: 20px;
+          max-height: 25vh;
+          overflow-y: auto;
+          &::placeholder {
+            color: $grey;
+          }
+        }
+      }
+      .bottom_cont {
+        height: 44px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        .clip {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: transparent;
+          border: none;
+          color: $font-white;
+          height: 32px;
+          width: 32px;
+          border-radius: 0.5rem;
+          transition: background 100ms;
+          cursor: pointer;
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.102);
+          }
+          svg {
+            height: 24px;
+            width: 24px;
+          }
+        }
+        .arrow_btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 32px;
+          width: 32px;
+          border-radius: 999px;
+          border: none;
+          cursor: pointer;
+          svg {
+            height: 100%;
+            width: 100%;
+          }
+          &:hover{
+            opacity: 0.75;
+          }
+        }
+      }
+    }
+  }
+}

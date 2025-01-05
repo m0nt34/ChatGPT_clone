@@ -5,11 +5,22 @@ import Dashboard from "../assets/icons/Dashboard";
 import Copy from "../assets/icons/Copy";
 import "../assets/styles/index.scss";
 import Upgrade from "../assets/icons/Upgrade";
+import { useOpen } from "../store/chatListOpen";
+import ThreeDots from "../assets/icons/ThreeDots";
 const ChatList = () => {
+  const { open, setOpen } = useOpen();
   return (
-    <div className={style.chatList}>
+    <div
+      className={style.chatList}
+      style={{
+        transition:
+          "width 400ms cubic-bezier(0.25, 0.46, 0.45, 1.1), padding 400ms",
+        padding: open ? "0 0.25rem 0 0.75rem" : "0",
+        width: open ? "260px" : "0",
+      }}
+    >
       <div className={style.header}>
-        <button>
+        <button onClick={setOpen}>
           <div className="customHover">
             <Dashboard />
           </div>
@@ -20,7 +31,7 @@ const ChatList = () => {
           </div>
         </button>
       </div>
-  
+
       <div className={style.middle_cont}>
         <div className={style.newChat}>
           <button>
@@ -40,80 +51,144 @@ const ChatList = () => {
         <div className={style.list}>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat titlsdfgsdfgase</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat titlesdfsdfsdfserdfgdsdff</span>
+              <span>
+                MY chat titleasdfasasdfasdasdff
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
           <Link to="/">
             <div className="customHover">
-              <span>MY chat title</span>
+              <span>
+                MY chat title
+                <div className={style.three_dots}>
+                  <ThreeDots />
+                </div>
+              </span>
             </div>
           </Link>
-          <Link to="/">
-            <div className="customHover">
-              <span>MY chat title</span>
-            </div>
-          </Link>
-        
         </div>
         <br />
       </div>

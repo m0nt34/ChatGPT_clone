@@ -6,16 +6,17 @@
   background-color: $dark-grey;
   height: 100vh;
   padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding-right: 0.25rem;
   user-select: none;
-
+  overflow: hidden;
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 56px;
-    flex-shrink: 0; 
+    flex-shrink: 0;
+    padding-right: 0.5rem;
     button {
       display: flex;
       align-items: center;
@@ -32,10 +33,11 @@
   }
   .middle_cont {
     overflow-y: auto;
+    overflow-x: hidden;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding-right: 1rem;
+    padding-right: 0.5rem;
     .newChat {
       display: flex;
       button {
@@ -49,6 +51,7 @@
         gap: 0.625rem;
         cursor: pointer;
         .newChatLogo {
+          flex-shrink: 0;
           border: 1.5px solid $mid-white-grey;
           border-radius: 999px;
           height: 24px;
@@ -78,20 +81,45 @@
     .list {
       display: flex;
       flex-direction: column;
+
       a {
         color: $font-white;
         flex-wrap: nowrap;
         white-space: nowrap;
         overflow: hidden;
-        div{
+        div {
           width: 100%;
-          span{
+
+          span {
+            position: relative;
             width: 100%;
             flex: 1;
-            display: inline-block;
-        
-            -webkit-mask-image: linear-gradient(90deg, black 75%, transparent 97%);
-            mask-image: linear-gradient(90deg, black 75%, transparent 97%);       }
+            display: flex;
+            -webkit-mask-image: linear-gradient(
+              90deg,
+              black 75%,
+              transparent 97%
+            );
+            mask-image: linear-gradient(90deg, black 75%, transparent 97%);
+
+            .three_dots {
+              position: absolute;
+              right: 0;
+              top: 0;
+              z-index: 10; // Higher z-index to ensure it is above the span
+              margin-right: 0.5rem;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: $font-white; // Ensure the icon color is visible
+
+              svg {
+                height: 18px;
+                width: 18px;
+              }
+            }
+          }
         }
       }
     }
@@ -102,6 +130,7 @@
     cursor: pointer;
     padding: 10px 0;
     gap: 0.5rem;
+    white-space: nowrap;
     .upgradeIcon {
       display: flex;
       align-items: center;
