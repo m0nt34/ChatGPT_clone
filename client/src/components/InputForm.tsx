@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import style from "../assets/styles/components/inputForm.module.scss";
 import Clip from "../assets/icons/Clip";
 import ArrowUp from "../assets/icons/ArrowUp";
@@ -13,7 +13,9 @@ const InputForm = () => {
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
-
+  useEffect(() => {
+    handleInput();
+  }, []);
   return (
     <div className={style.main_cont}>
       <div className={style.input_field}>

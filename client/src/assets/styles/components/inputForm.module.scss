@@ -1,4 +1,6 @@
 @use "../variables.scss" as *;
+@use "../breakpoints.scss" as breakpoints;
+
 .main_cont {
   display: flex;
   align-items: center;
@@ -6,12 +8,16 @@
   width: 100%;
 
   .input_field {
-    max-width: 38rem;
+    max-width: 46.5rem;
+    //44.5rem
     width: 100%;
     border-radius: 1.5rem;
     padding: 0 1rem;
     background-color: $mid-dark-grey;
     padding: 4px 10px;
+    @include breakpoints.mdp {
+      max-width: 38rem;
+    }
     form {
       display: flex;
       flex-direction: column;
@@ -77,7 +83,7 @@
             height: 100%;
             width: 100%;
           }
-          &:hover{
+          &:hover {
             opacity: 0.75;
           }
         }

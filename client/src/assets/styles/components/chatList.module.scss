@@ -95,29 +95,37 @@
             width: 100%;
             flex: 1;
             display: flex;
-            -webkit-mask-image: linear-gradient(
-              90deg,
-              black 75%,
-              transparent 97%
-            );
-            mask-image: linear-gradient(90deg, black 75%, transparent 97%);
-
+            overflow-x: hidden;
             .three_dots {
+              width: fit-content;
               position: absolute;
               right: 0;
               top: 0;
-              z-index: 10; // Higher z-index to ensure it is above the span
-              margin-right: 0.5rem;
+              z-index: 10; 
+              padding-right: 0.125rem;
               height: 100%;
               display: flex;
               align-items: center;
-              justify-content: center;
-              color: $font-white; // Ensure the icon color is visible
-
+              justify-content:end;
+              color: $font-white; 
+              width: 42px;
+              background-image: linear-gradient(to left, $dark-grey 15%, rgba(0, 0, 0, 0) 100%);
+              transition: all 100ms;
               svg {
+                display: none;
                 height: 18px;
                 width: 18px;
               }
+            }
+          }
+        }
+        &:hover .three_dots{
+          background-image: linear-gradient(to left, #212121 60%, rgba(0, 0, 0, 0) 100%);
+          svg{
+            color: $grey;
+            display: block;
+            &:hover{
+              color: $font-white;
             }
           }
         }
@@ -128,7 +136,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 10px 0;
+    padding: 10px 0.5rem 10px 0;
     gap: 0.5rem;
     white-space: nowrap;
     .upgradeIcon {
