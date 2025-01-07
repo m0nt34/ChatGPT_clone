@@ -29,7 +29,9 @@ a {
   padding: 0.5rem;
   border-radius: 0.5rem;
   background-color: transparent;
+  overflow-x: hidden;
   transition: background 100ms;
+  flex-shrink: 0;
   width: 100%;
   &:hover {
     background-color: #212121;

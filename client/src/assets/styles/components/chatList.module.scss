@@ -2,7 +2,9 @@
 .chatList {
   display: flex;
   flex-direction: column;
+
   width: 260px;
+  flex-shrink: 0;
   background-color: $dark-grey;
   height: 100vh;
   padding-left: 0.75rem;
@@ -15,9 +17,10 @@
     justify-content: space-between;
     width: 100%;
     height: 56px;
-    flex-shrink: 0;
     padding-right: 0.5rem;
+    flex-shrink: 0;
     button {
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -25,6 +28,7 @@
       color: $font-grey;
       border: none;
       cursor: pointer;
+
       svg {
         height: 24px;
         width: 24px;
@@ -39,7 +43,9 @@
     flex-direction: column;
     padding-right: 0.5rem;
     .newChat {
+      overflow-x: hidden;
       display: flex;
+      flex-shrink: 0;
       button {
         display: flex;
         align-items: center;
@@ -101,15 +107,19 @@
               position: absolute;
               right: 0;
               top: 0;
-              z-index: 10; 
+              z-index: 10;
               padding-right: 0.125rem;
               height: 100%;
               display: flex;
               align-items: center;
-              justify-content:end;
-              color: $font-white; 
+              justify-content: end;
+              color: $font-white;
               width: 42px;
-              background-image: linear-gradient(to left, $dark-grey 15%, rgba(0, 0, 0, 0) 100%);
+              background-image: linear-gradient(
+                to left,
+                $dark-grey 15%,
+                rgba(0, 0, 0, 0) 100%
+              );
               transition: all 100ms;
               svg {
                 display: none;
@@ -119,12 +129,16 @@
             }
           }
         }
-        &:hover .three_dots{
-          background-image: linear-gradient(to left, #212121 60%, rgba(0, 0, 0, 0) 100%);
-          svg{
+        &:hover .three_dots {
+          background-image: linear-gradient(
+            to left,
+            #212121 60%,
+            rgba(0, 0, 0, 0) 100%
+          );
+          svg {
             color: $grey;
             display: block;
-            &:hover{
+            &:hover {
               color: $font-white;
             }
           }
@@ -139,6 +153,9 @@
     padding: 10px 0.5rem 10px 0;
     gap: 0.5rem;
     white-space: nowrap;
+    flex-shrink: 0;
+    overflow-x: hidden;
+
     .upgradeIcon {
       display: flex;
       align-items: center;
@@ -148,14 +165,22 @@
       height: 28px;
       width: 28px;
       color: $white;
+      overflow-x: hidden;
+      flex-shrink: 0;
       svg {
+        flex-shrink: 0;
         padding: 4px;
+        overflow-x: hidden;
       }
     }
     .texts {
+      overflow-x: hidden;
+
       display: flex;
       flex-direction: column;
       span {
+        overflow-x: hidden;
+
         &:first-child {
           color: $white;
           font-size: 14px;
