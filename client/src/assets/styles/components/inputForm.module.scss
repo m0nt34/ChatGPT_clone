@@ -6,18 +6,18 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-
+  padding: 0 20px 0 52px;
+  @include breakpoints.smm {
+    padding: 0 12px 0 44px;
+  }
   .input_field {
     max-width: 46.5rem;
-    //44.5rem
     width: 100%;
     border-radius: 1.5rem;
     padding: 0 1rem;
     background-color: $mid-dark-grey;
     padding: 4px 10px;
-    @include breakpoints.mdp {
-      max-width: 38rem;
-    }
+
     form {
       display: flex;
       flex-direction: column;

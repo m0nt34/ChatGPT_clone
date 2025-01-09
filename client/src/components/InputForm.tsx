@@ -32,9 +32,10 @@ const InputForm = () => {
             />
           </div>
           <div className={style.bottom_cont}>
-            <button className={style.clip} type="button">
+            <label className={style.clip} htmlFor="file">
               <Clip />
-            </button>
+            </label>
+            <input type="file" id="file" multiple={false} hidden />
             <button className={style.arrow_btn} type="button">
               <ArrowUp />
             </button>
