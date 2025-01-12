@@ -17,9 +17,35 @@
 
       .message {
         display: flex;
-        align-items: center;
         color: $font-white;
         gap: 1.25rem;
+        .text {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          line-height: 24px;
+          p {
+            width: 100%;
+            display: flex;
+            margin: 8px 0;
+            word-break: break-word; /* Ensures long words break and wrap */
+            flex-wrap: wrap;
+            overflow-wrap: break-word; /* Ensures that text within the paragraph wraps properly */
+            white-space: normal; 
+          }
+          ol,
+          ul {
+            margin-bottom: 1.25rem;
+            li {
+              margin: 8px 0;
+              padding-left: 6px;
+            }
+          }
+          pre {
+            white-space: pre-wrap;
+          }
+          
+        }
         .AIIcon {
           height: 100%;
           width: 2rem;
@@ -41,6 +67,7 @@
           background-color: $mid-dark-grey;
           width: fit-content;
           margin-left: auto;
+          word-break: break-word; 
         }
       }
     }

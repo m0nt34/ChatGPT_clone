@@ -1,9 +1,7 @@
 import { create } from "zustand";
+import { openStruct } from "../types/types";
 
-type openStruct = {
-  open: boolean;
-  setOpen: () => void;
-};
+
 
 export const useOpen = create<openStruct>((set) => ({
   open: true,

@@ -18,6 +18,47 @@
     background-color: $mid-dark-grey;
     padding: 4px 10px;
 
+    .imgs_cont {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 6px;
+      padding-bottom: 6px;
+      height: fit-content;
+      height: 70px;
+      width: 100%;
+      svg{
+        height: 40px;
+        width: 40px;
+      }
+      .img_cont {
+        position: relative;
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: -7px;
+          right: -7px;
+          background-color: $white;
+          border-radius: 999px;
+          border: 3px solid $mid-dark-grey;
+          width: 22px;
+          height: 22px;
+          cursor: pointer;
+          svg {
+            height: 12px;
+            width: 12px;
+          }
+        }
+        img {
+          height: 3.5rem;
+          width: 3.5rem;
+          border-radius: .75rem;
+          object-fit: cover;
+        }
+      }
+    }
     form {
       display: flex;
       flex-direction: column;
