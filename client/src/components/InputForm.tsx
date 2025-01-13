@@ -9,9 +9,11 @@ import { deleteIMG } from "../services/deleteIMG";
 import Loader from "../assets/icons/animated/Loader";
 import model from "../lib/gemini";
 import { useChat } from "../store/chat";
+import { useLoading } from "../store/chatLoading";
 const InputForm = () => {
   const [text, setText] = useState<string>("");
   const { addChat } = useChat();
+  const { setLoading } = useLoading();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [img, setImg] = useState<ImgState>({
     isLoading: false,
@@ -40,10 +42,10 @@ const InputForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
     const prop = text.trim();
-
     if (!prop) return;
+    setLoading(true);
+
     setText("");
     if (textareaRef.current) {
       textareaRef.current.style.height = "20px";
@@ -54,7 +56,7 @@ const InputForm = () => {
       text: prop,
     });
     const result = await model.generateContent(prop);
-    console.log(result);
+    setLoading(false);
 
     addChat({
       user: false,
