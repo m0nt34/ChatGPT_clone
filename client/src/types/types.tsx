@@ -9,6 +9,13 @@ export type ImgState = {
   dbData: {
     fileId?: string;
     filePath?: string;
+    url?: string;
+  };
+  aiData: {
+    inlineData: {
+      data: string;
+      mimeType: string;
+    };
   };
 };
 
@@ -17,3 +24,12 @@ export type chatState = {
   img: string;
   text: string;
 };
+/*
+export type chatState = {
+  role: string;
+  parts: {
+    text: string;
+    img: string;
+  }[];
+};
+*/

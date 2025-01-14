@@ -8,6 +8,8 @@ import { useEffect, useRef } from "react";
 import ScrollDown from "./ScrollDown";
 import { useLoading } from "../../store/chatLoading";
 import LoaderDot from "../../assets/icons/animated/LoaderDot";
+import Copy2 from "../../assets/icons/Copy2";
+import { copyToClipboard } from "../../utils/CopyToClipboard";
 
 const Chat = () => {
   const { chats } = useChat();
@@ -15,7 +17,7 @@ const Chat = () => {
   const { loading } = useLoading();
   useEffect(() => {
     scrollDownFunc();
-  }, [chats]);
+  }, [chats, loading]);
   const scrollDownFunc = () => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -26,9 +28,18 @@ const Chat = () => {
         {chats.map((message, i) => {
           return message.user ? (
             <div key={i} className={`${style.wrapper}`}>
-              <div className={`${style.message} ${style.user}`}>
-                {message.text}
-              </div>
+              {message.img && (
+                <div className={style.img_wrapper}>
+                  <div className={style.img_cont}>
+                    <img src={message.img} alt="" />
+                  </div>
+                </div>
+              )}
+              {message.text.length !== 0 && (
+                <div className={`${style.message} ${style.user}`}>
+                  {message.text}
+                </div>
+              )}
             </div>
           ) : (
             <div key={i} className={`${style.wrapper}`}>
@@ -46,16 +57,28 @@ const Chat = () => {
                         const language = className
                           ? className.replace("language-", "")
                           : null;
-                        console.log(className);
-
                         if (language) {
                           return (
                             <>
-                              <div className={style.pre_header}>{language}</div>
+                              <div className={style.pre_header}>
+                                {language}
+                                <div className={style.sticky_button_wrapper}>
+                                  <div className={style.sticky_button_cont}>
+                                    <button
+                                      onClick={() => {
+                                        if (children)
+                                          copyToClipboard(children.toString());
+                                      }}
+                                    >
+                                      <Copy2 />
+                                      Copy code
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
                               <SyntaxHighlighter
                                 style={tomorrowNightBright}
                                 className={style.markdown_cont}
-                                //showLineNumbers={true}
                                 customStyle={{
                                   display: "flex",
                                   justifyContent: "flex-start",
@@ -63,6 +86,8 @@ const Chat = () => {
                                   maxWidth: "100%",
                                   backgroundColor: "#0d0d0d",
                                   padding: "0",
+                                  overflowX: "auto",
+                                  overflow: "visible !important",
                                 }}
                                 language={language}
                               >
@@ -92,7 +117,7 @@ const Chat = () => {
               </div>
             </div>
             <div className={style.loader}>
-              <LoaderDot/>
+              <LoaderDot />
             </div>
           </div>
         )}

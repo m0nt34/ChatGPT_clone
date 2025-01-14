@@ -38,9 +38,8 @@ const Upload = ({
 
   const onSuccess = (res: any) => {
     console.log("Success", res);
-
-    deleteIMGFunc();
     setImg((prev) => ({ ...prev, isLoading: false, dbData: res }));
+    console.log(res);
   };
 
   const onUploadProgress = (progress: any) => {
@@ -48,8 +47,27 @@ const Upload = ({
   };
 
   const onUploadStart = (evt: any) => {
-    setImg((prev) => ({ ...prev, isLoading: true }));
-    console.log("Start", evt);
+    deleteIMGFunc();
+    const file = evt.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImg((prev) => ({
+        ...prev,
+        isLoading: true,
+        aiData: {
+          inlineData: {
+            data:
+              typeof reader.result === "string"
+                ? reader.result.split(",")[1]
+                : "",
+            mimeType: file.type,
+          },
+        },
+      }));
+    };
+
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -59,7 +77,7 @@ const Upload = ({
       authenticator={authenticator}
     >
       <IKUpload
-        fileName="test-upload.png"
+        fileName=""
         onError={onError}
         onSuccess={onSuccess}
         useUniqueFileName={true}

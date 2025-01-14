@@ -11,7 +11,7 @@
       display: flex;
       align-items: start;
       justify-content: space-between;
-      z-index: 100;
+      z-index: 10;
       height:64px;
 
       .logo_cont {
@@ -43,6 +43,28 @@
             padding: 8px;
             &:hover {
               background-color: #2f2f2f;
+            }
+            &:first-child {
+              svg {
+                
+                &:first-child {
+                  display: block;
+                  @include breakpoints.smm {
+                    display: none;
+                  }
+                }
+                &:last-child {
+                  display: none;
+                  @include breakpoints.smm {
+                    display: block;
+                  }
+                }
+              }
+            }
+            &:last-child{
+              @include breakpoints.smm{
+                display: none;
+              }
             }
             svg {
               height: 24px;

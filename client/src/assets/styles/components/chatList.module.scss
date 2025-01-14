@@ -1,9 +1,21 @@
 @use "../variables.scss" as *;
+@use "../breakpoints.scss" as breakpoints;
+
+.wrapper.opened {
+  @include breakpoints.smm {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 11;
+  }
+  transition: background 0.2s;
+}
 .chatList {
   display: flex;
   flex-direction: column;
 
-  width: 260px;
+  width: 0;
   flex-shrink: 0;
   background-color: $dark-grey;
   height: 100vh;
@@ -11,6 +23,16 @@
   padding-right: 0.25rem;
   user-select: none;
   overflow: hidden;
+  z-index: 15;
+  &.opened {
+    width: 260px;
+    @include breakpoints.smm {
+      width: 319px;
+    }
+  }
+  @include breakpoints.smm {
+    position: absolute;
+  }
   .header {
     display: flex;
     align-items: center;
@@ -28,7 +50,22 @@
       color: $font-grey;
       border: none;
       cursor: pointer;
-
+      &:first-child {
+        svg {
+          &:first-child {
+            display: block;
+            @include breakpoints.smm {
+              display: none;
+            }
+          }
+          &:last-child {
+            display: none;
+            @include breakpoints.smm {
+              display: block;
+            }
+          }
+        }
+      }
       svg {
         height: 24px;
         width: 24px;

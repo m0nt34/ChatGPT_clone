@@ -6,6 +6,7 @@ import { SignedIn, UserButton } from "@clerk/clerk-react";
 import { useOpen } from "../store/chatListOpen";
 import Logo from "../assets/icons/Logo";
 import Dashboard from "../assets/icons/Dashboard";
+import Menu from "../assets/icons/Menu";
 const NavBar = () => {
   const { open, setOpen } = useOpen();
   return (
@@ -20,6 +21,7 @@ const NavBar = () => {
             <div className={style.buttons}>
               <button onClick={setOpen}>
                 <Dashboard />
+                <Menu/>
               </button>
               <button>
                 <Copy />

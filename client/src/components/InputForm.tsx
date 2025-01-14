@@ -7,19 +7,16 @@ import { IKImage } from "imagekitio-react";
 import XIcon from "../assets/icons/XIcon";
 import { deleteIMG } from "../services/deleteIMG";
 import Loader from "../assets/icons/animated/Loader";
-import model from "../lib/gemini";
 import { useChat } from "../store/chat";
 import { useLoading } from "../store/chatLoading";
+import { getResponse } from "../services/gptResponse";
+
 const InputForm = () => {
   const [text, setText] = useState<string>("");
   const { addChat } = useChat();
   const { setLoading } = useLoading();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [img, setImg] = useState<ImgState>({
-    isLoading: false,
-    error: "",
-    dbData: {},
-  });
+  const [img, setImg] = useState<ImgState>({ isLoading: false, error: "", dbData: {}, aiData: { inlineData: { data: "", mimeType: "" } }, });
   const handleInput = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "20px";
@@ -29,40 +26,36 @@ const InputForm = () => {
   useEffect(() => {
     handleInput();
   }, []);
-  const deleteImg = () => {
-    if (img.dbData.fileId) {
+  const deleteImg = (clear = true) => {
+    if (img.dbData.fileId && clear) {
       deleteIMG(img.dbData.fileId);
     }
-    setImg({
-      isLoading: false,
-      error: "",
-      dbData: {},
-    });
+    setImg({ isLoading: false, error: "", dbData: {}, aiData: { inlineData: { data: "",mimeType: "" }, },});
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const prop = text.trim();
-    if (!prop) return;
+    if (!prop && !img.dbData.url) return;
     setLoading(true);
 
     setText("");
     if (textareaRef.current) {
       textareaRef.current.style.height = "20px";
     }
-    addChat({
-      user: true,
-      img: "",
-      text: prop,
-    });
-    const result = await model.generateContent(prop);
-    setLoading(false);
 
-    addChat({
-      user: false,
-      img: "",
-      text: result.response.text(),
-    });
+    addChat({user: true,img: img.dbData?.url ? img.dbData.url : "",text: prop});
+    const imgCopy = { ...img };
+    deleteImg(false);
+    const { error, res } = await getResponse({ imgCopy, prop });
+
+    if (error) {
+      setLoading(false);
+      addChat({user: false,img: "",text: res});
+    } else {
+      setLoading(false);
+      addChat({user: false,img: "",text: res});
+    }
   };
   return (
     <>
@@ -75,7 +68,7 @@ const InputForm = () => {
           ) : img.dbData?.filePath ? (
             <div className={style.imgs_cont}>
               <div className={style.img_cont}>
-                <button onClick={deleteImg}>
+                <button onClick={() => deleteImg()}>
                   <XIcon />
                 </button>
                 <IKImage
@@ -87,7 +80,13 @@ const InputForm = () => {
               </div>
             </div>
           ) : null}
-          <form action="*" onSubmit={handleSubmit}>
+          <form
+            action="*"
+            onSubmit={handleSubmit}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSubmit(e);
+            }}
+          >
             <div className={style.input_cont}>
               <textarea
                 ref={textareaRef}
