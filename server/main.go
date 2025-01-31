@@ -30,7 +30,7 @@ func uploadIMG(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 }
 
@@ -62,7 +62,7 @@ func main() {
 	mongoServices := &database.MongoService{}
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Print("Error loading .env file")
 	}
 
 	mux := http.NewServeMux()
@@ -109,6 +109,6 @@ func main() {
 	if port == "" {
 		port = "8080" 
 	}
-	log.Fatal(http.ListenAndServe(":"+port, c.Handler(mux)))
+	log.Print(http.ListenAndServe(":"+port, c.Handler(mux)))
 	defer mongoServices.Disconnect()
 }
