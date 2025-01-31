@@ -1,4 +1,5 @@
 @use "../variables.scss" as *;
+@use "../breakpoints.scss" as breakpoints;
 .main_cont {
   display: flex;
   flex-direction: column;
@@ -32,6 +33,9 @@
         width: fit-content;
         gap: 16px;
         padding: 48px 12px 0 12px;
+        @include breakpoints.xxs{
+          display: none;
+        }
         .row {
           display: flex;
           gap: 16px;

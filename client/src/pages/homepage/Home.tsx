@@ -29,6 +29,7 @@ const Home = () => {
             />
             <div className={style.chat}>
               <img src={botImg ? botIMG : humanIMG} alt="" draggable={false} />
+              
               <TypeAnimation
                 sequence={[
                   "What can you do?",

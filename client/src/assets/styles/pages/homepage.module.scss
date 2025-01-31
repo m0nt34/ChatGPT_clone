@@ -104,8 +104,9 @@
         font-weight: 600;
         bottom: 0;
         left: 0;
-        padding: 0.75rem 1rem;
         border-radius: 6px;
+        padding: 12px 16px;
+
         img {
           height: 40px;
           width: 40px;
@@ -185,9 +186,16 @@
       }
     }
     .right {
-      .chat {
-        font-size: 14px;
-        bottom: -25px;
+      .img_cont {
+        .chat {
+          padding: 8px 12px;
+          font-size: 14px;
+          bottom: -25px;
+          img {
+            height: 35px;
+            width: 35px;
+          }
+        }
       }
     }
   }
@@ -215,13 +223,17 @@
         font-size: 1.1rem;
       }
     }
+
     .right {
-      .chat {
-        font-size: 13px;
-        bottom: -25px;
-        img {
-          height: 30px;
-          width: 30px;
+      .img_cont {
+        .chat {
+          padding: 6px 10px;
+          font-size: 13px;
+          bottom: -25px;
+          img {
+            height: 35px;
+            width: 35px;
+          }
         }
       }
     }
@@ -249,19 +261,66 @@
         font-size: 1rem;
       }
     }
+  }
+}
+
+@include breakpoints.xs {
+  .homepage {
+    .wrapper {
+      margin-top: 3rem;
+      gap: 4rem;
+      height: fit-content;
+      flex-direction: column;
+    }
+    .left {
+      gap: 0.5rem;
+      flex: 0;
+      h1 {
+        font-size: 6rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        max-width: 80%;
+        font-size: 1rem;
+      }
+      a {
+        padding: 0.7rem 1.4rem;
+        font-size: 1.3rem;
+      }
+    }
     .right {
-      .chat {
-        font-size: 13px;
-        bottom: -30px;
+      flex: 0;
+      .img_cont {
+        display: flex;
+        justify-content: center;
+        width: 100%;
         img {
-          height: 30px;
-          width: 30px;
+          width: 80%;
+          height: auto;
         }
       }
     }
   }
 }
-
+@include breakpoints.smm {
+  .homepage {
+    .right {
+      .img_cont {
+        .chat {
+          padding: 6px 8px;
+          font-size: 13px;
+          bottom: -25px;
+          img {
+            height: 32px;
+            width: 32px;
+          }
+        }
+      }
+    }
+  }
+}
 @include breakpoints.xs {
   .homepage {
     .wrapper {
@@ -341,15 +400,12 @@
       flex: 0;
       .img_cont {
         display: flex;
+        justify-content: center;
         width: 100%;
-      }
 
-      .chat {
-        font-size: 13px;
-        bottom: -25px;
-        img {
-          height: 30px;
-          width: 30px;
+        .chat{
+          bottom: -30px;
+          left: 10px;
         }
       }
     }

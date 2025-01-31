@@ -185,6 +185,7 @@
           width: fit-content;
           margin-left: auto;
           white-space: pre-wrap;
+          word-break: break-word;
           @include breakpoints.sm {
             max-width: 80%;
           }

@@ -1,0 +1,40 @@
+@use "../variables.scss" as *;
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  .content_cont {
+    max-width: 224px;
+    width: 100%;
+    header {
+      display: flex;
+      flex-direction: column;
+      color: $white;
+      .logo_cont {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 8px;
+      }
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 2rem;
+        
+      }
+    }
+    .text{
+      width: 100%;
+      margin-top: 8px;
+      padding-bottom: 32px;
+      min-height: 120px;
+      p{
+        color: $white;
+        width: 100%;
+        line-height: 1.5rem;
+
+      }
+    }
+  }
+}

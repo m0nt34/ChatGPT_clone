@@ -10,8 +10,9 @@ const publicKey = import.meta.env.VITE_IMAGE_KIT_PUBLIC_KEY;
 const authenticator = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:${import.meta.env.VITE_BACKEND_PORT}/api/upload`
+      `${import.meta.env.VITE_BACKEND_URL}/api/upload`
     );
+
     const data = response.data;
 
     const { Signature, Expires, Token } = data;
@@ -32,18 +33,15 @@ const Upload = ({
   deleteIMGFunc: () => void;
 }) => {
   const onError = (err: any) => {
-    console.log("Error", err);
     setImg((prev) => ({ ...prev, isLoading: false }));
   };
 
   const onSuccess = (res: any) => {
-    console.log("Success", res);
     setImg((prev) => ({ ...prev, isLoading: false, dbData: res }));
     console.log(res);
   };
 
   const onUploadProgress = (progress: any) => {
-    console.log("Progress", progress);
   };
 
   const onUploadStart = (evt: any) => {

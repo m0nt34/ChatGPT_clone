@@ -10,14 +10,34 @@ import { useLoading } from "../../store/chatLoading";
 import LoaderDot from "../../assets/icons/animated/LoaderDot";
 import Copy2 from "../../assets/icons/Copy2";
 import { copyToClipboard } from "../../utils/CopyToClipboard";
-
+import { useLocation } from "react-router-dom";
+import { useCurrentChatId } from "../../store/currectChatId";
+import { getChatContent } from "../../services/getChatContent";
 const Chat = () => {
-  const { chats } = useChat();
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const { setChat, chats } = useChat();
   const { loading } = useLoading();
+
+  const location = useLocation();
+  const { setCurrentChatId } = useCurrentChatId();
+  const scrollRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     scrollDownFunc();
-  }, [chats, loading]);
+    getIdFromUrl(false);
+  }, [chats, loading, location.pathname]);
+  useEffect(() => {
+    getIdFromUrl(true);
+  }, []);
+  const getIdFromUrl = async (getContent: boolean) => {
+    if (location.pathname.includes("/dashboard/chats/")) {
+      const splittedPathname = location.pathname.split("/");
+      const id = splittedPathname[splittedPathname.length - 1];
+      setCurrentChatId(id);
+      if (getContent&&!chats.length) {
+        const res = await getChatContent(id);
+        setChat(res);
+      }
+    }
+  };
   const scrollDownFunc = () => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -26,18 +46,18 @@ const Chat = () => {
     <div className={style.chatPage}>
       <div className={style.chat}>
         {chats.map((message, i) => {
-          return message.user ? (
+          return message.Role === "user" ? (
             <div key={i} className={`${style.wrapper}`}>
-              {message.img && (
+              {message.Image && (
                 <div className={style.img_wrapper}>
                   <div className={style.img_cont}>
-                    <img src={message.img} alt="" />
+                    <img src={message.Image} alt="" />
                   </div>
                 </div>
               )}
-              {message.text.length !== 0 && (
+              {message.Parts[0].Text.length !== 0 && (
                 <div className={`${style.message} ${style.user}`}>
-                  {message.text}
+                  {message.Parts[0].Text}
                 </div>
               )}
             </div>
@@ -51,7 +71,7 @@ const Chat = () => {
                 </div>
                 <div className={style.text}>
                   <Markdown
-                    children={message.text}
+                    children={message.Parts[0].Text}
                     components={{
                       code({ node, className, children, ...props }) {
                         const language = className

@@ -10,6 +10,7 @@ import RootLayout from "./layouts/RootLayout.tsx";
 import DashboardLayout from "./layouts/DashboardLayout.tsx";
 import SignInPage from "./pages/signin/SignIn.tsx";
 import SignUpPage from "./pages/signup/Signup.tsx";
+import NotFound from "./pages/notFound/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

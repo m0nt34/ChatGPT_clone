@@ -20,16 +20,31 @@ export type ImgState = {
 };
 
 export type chatState = {
-  user: boolean;
-  img: string;
-  text: string;
+  Role: string;
+  Parts: [
+    {
+      Text: string;
+    }
+  ];
+  Image: string;
 };
-/*
-export type chatState = {
-  role: string;
-  parts: {
-    text: string;
-    img: string;
-  }[];
+
+export type chatListType = {
+  ID: string;
+  Title: string;
+  CreatedAt: string;
 };
-*/
+
+type PartsObj = {
+  Text: string;
+};
+export type historyType = {
+  Role: string;
+  Parts: PartsObj[];
+  Image: string;
+};
+
+export type EditReq = {
+  ID: string;
+  NewTitle: string;
+};

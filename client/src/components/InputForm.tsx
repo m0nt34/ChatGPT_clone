@@ -10,27 +10,41 @@ import Loader from "../assets/icons/animated/Loader";
 import { useChat } from "../store/chat";
 import { useLoading } from "../store/chatLoading";
 import { getResponse } from "../services/gptResponse";
+import Stop from "../assets/icons/Stop";
+import { useUser } from "@clerk/clerk-react";
+import { createNewChat } from "../services/createNewChat";
+import { useChatList } from "../store/chatList";
+import { useNavigate } from "react-router-dom";
+import { uploadContent } from "../services/uploadContent";
+import { useCurrentChatId } from "../store/currectChatId";
 
 const InputForm = () => {
   const [text, setText] = useState<string>("");
-  const { addChat } = useChat();
-  const { setLoading } = useLoading();
+  const { chats, addChat } = useChat();
+  const { loading, setLoading } = useLoading();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [img, setImg] = useState<ImgState>({ isLoading: false, error: "", dbData: {}, aiData: { inlineData: { data: "", mimeType: "" } }, });
+  const { user } = useUser();
+  const { addChatToChatList } = useChatList();
+  const { currentChatId, setCurrentChatId } = useCurrentChatId();
+  const [img, setImg] = useState<ImgState>({ isLoading: false, error: "", dbData: {}, aiData: { inlineData: { data: "", mimeType: "" } } });
+
+  const navigate = useNavigate();
   const handleInput = () => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "20px";
+      textareaRef.current.style.height = "24px";
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
+
   useEffect(() => {
     handleInput();
   }, []);
+
   const deleteImg = (clear = true) => {
     if (img.dbData.fileId && clear) {
       deleteIMG(img.dbData.fileId);
     }
-    setImg({ isLoading: false, error: "", dbData: {}, aiData: { inlineData: { data: "",mimeType: "" }, },});
+    setImg({ isLoading: false, error: "", dbData: {}, aiData: { inlineData: { data: "", mimeType: "" } } });
   };
 
   const handleSubmit = async (e: any) => {
@@ -38,25 +52,34 @@ const InputForm = () => {
     const prop = text.trim();
     if (!prop && !img.dbData.url) return;
     setLoading(true);
-
+    let tempID = "";
     setText("");
+    handleInput();
     if (textareaRef.current) {
-      textareaRef.current.style.height = "20px";
+      textareaRef.current.style.height = "24px";
     }
+    if (!chats.length && user) {
+      const response = await createNewChat(user.id, prop.substring(0, 50));
 
-    addChat({user: true,img: img.dbData?.url ? img.dbData.url : "",text: prop});
+      if (response) {
+        addChatToChatList(response);
+        setCurrentChatId(response.ID);
+        tempID = response.ID;
+      }
+      navigate(`/dashboard/chats/${response.ID}`);
+    }
+    const newHistory = { Role: "user", Parts: [{ Text: prop }] as [{ Text: string }], Image: img.dbData?.url ? img.dbData.url : "" };
+    addChat(newHistory);
+    uploadContent(newHistory, tempID ? tempID : currentChatId);
     const imgCopy = { ...img };
     deleteImg(false);
     const { error, res } = await getResponse({ imgCopy, prop });
-
-    if (error) {
-      setLoading(false);
-      addChat({user: false,img: "",text: res});
-    } else {
-      setLoading(false);
-      addChat({user: false,img: "",text: res});
-    }
+    setLoading(false);
+    const modelReq = { Role: "model", Parts: [{ Text: res }] as [{ Text: string }], Image: "" };
+    addChat(modelReq);
+    uploadContent(modelReq, tempID ? tempID : currentChatId);
   };
+  
   return (
     <>
       <div className={style.main_cont}>
@@ -101,8 +124,12 @@ const InputForm = () => {
             <div className={style.bottom_cont}>
               <Upload setImg={setImg} deleteIMGFunc={deleteImg} />
               <input type="file" id="file" multiple={false} hidden />
-              <button className={style.arrow_btn} type="submit">
-                <ArrowUp />
+              <button
+                className={style.arrow_btn}
+                type="submit"
+                style={{ pointerEvents: loading ? "none" : "all" }}
+              >
+                {loading ? <Stop /> : <ArrowUp />}
               </button>
             </div>
           </form>
