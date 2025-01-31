@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -22,7 +21,6 @@ func uploadIMG(w http.ResponseWriter, r *http.Request) {
 		PublicKey:   os.Getenv("IMAGE_KIT_PUBLIC_KEY"),
 		UrlEndpoint: os.Getenv("IMAGE_KIT_ENDPOINT"),
 	})
-	fmt.Println(1)
 	signTokenParams := imagekit.SignTokenParam{}
 	resp:= ik.SignToken(signTokenParams)
 
@@ -107,10 +105,10 @@ func main() {
 		AllowedHeaders:   []string{"Content-Type", "Authorization"},
 		AllowCredentials: true,
 	})
-	fmt.Println(os.Getenv("PORT"))
-	err = http.ListenAndServe(":"+os.Getenv("PORT"), c.Handler(mux))
-	if err != nil {
-		log.Fatal(err)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" 
 	}
+	log.Fatal(http.ListenAndServe(":"+port, c.Handler(mux)))
 	defer mongoServices.Disconnect()
 }
