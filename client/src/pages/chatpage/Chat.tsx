@@ -83,6 +83,7 @@ const Chat = () => {
                               <div className={style.pre_header}>
                                 {language}
                                 <div className={style.sticky_button_wrapper}>
+                                  
                                   <div className={style.sticky_button_cont}>
                                     <button
                                       onClick={() => {

@@ -35,25 +35,22 @@ const ChatListListComp = ({ chat }: { chat: chatListType }) => {
     setOpen(false);
   };
   const setNewTitleFunc = () => {
-    setEdit(false);
-    if (title !== chat.Title && title.trim() && title.trim().length <= 50) {
-      setNewChatName(chat.ID, title.trim());
-      if (user?.id)
-        editChatTitle(user.id, {
-          ID: chat.ID,
-          NewTitle: title,
-        });
+
+    if (title !== chat.Title && title.trim().substring(0, 50)) {
+      setNewChatName(chat.ID, title.trim().substring(0, 50));
+      if (user?.id) editChatTitle(user.id, { ID: chat.ID, NewTitle: title.trim().substring(0, 50) });
     }
+    setEdit(false);
   };
+  
   const deleteFunc = () => {
     deleteChat(chat.ID);
     deleteChatService(chat.ID);
     const locID = location.pathname.split("/");
-    if (chat.ID == locID[locID.length-1]) {
-      navigate("/dashboard");
+    if (chat.ID == locID[locID.length - 1]) {
+      navigate("/dashboard", { replace: true });
     }
   };
-
 
   return (
     <div className={style.ChatList_component_main_wrapper}>

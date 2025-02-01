@@ -96,6 +96,7 @@
             line-height: 1.75rem;
             code {
               height: 100%;
+              flex-grow: 1;
               vertical-align: baseline;
               line-height: normal;
               border-radius: 0.25rem;
@@ -129,14 +130,19 @@
               border-top-right-radius: 0.375rem;
               color: $grey;
               .sticky_button_wrapper {
+                pointer-events: none;
+                user-select: none;
                 position: absolute;
                 top: 0;
+
                 right: 16px;
                 z-index: 5;
                 height: 100%;
-                padding: 8px  0;
+                padding: 8px 0;
                 .sticky_button_cont {
                   position: sticky;
+                  pointer-events: all;
+
                   top: 6px;
                   background-color: $mid-dark-grey;
                   border-radius: 0.25rem;
