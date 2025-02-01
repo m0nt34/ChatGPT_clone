@@ -73,7 +73,8 @@ const InputForm = () => {
     uploadContent(newHistory, tempID ? tempID : currentChatId);
     const imgCopy = { ...img };
     deleteImg(false);
-    const { error, res } = await getResponse({ imgCopy, prop });
+    const { res } = await getResponse({ imgCopy, prop });
+
     setLoading(false);
     const modelReq = { Role: "model", Parts: [{ Text: res }] as [{ Text: string }], Image: "" };
     addChat(modelReq);

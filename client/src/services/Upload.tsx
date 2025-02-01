@@ -34,6 +34,7 @@ const Upload = ({
 }) => {
   const onError = (err: any) => {
     setImg((prev) => ({ ...prev, isLoading: false }));
+    console.log(err);
   };
 
   const onSuccess = (res: any) => {
@@ -41,8 +42,6 @@ const Upload = ({
     console.log(res);
   };
 
-  const onUploadProgress = (progress: any) => {
-  };
 
   const onUploadStart = (evt: any) => {
     deleteIMGFunc();
@@ -79,7 +78,6 @@ const Upload = ({
         onError={onError}
         onSuccess={onSuccess}
         useUniqueFileName={true}
-        onUploadProgress={onUploadProgress}
         onUploadStart={onUploadStart}
         style={{ display: "none" }}
         id="upload"

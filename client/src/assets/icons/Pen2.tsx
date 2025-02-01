@@ -1,4 +1,3 @@
-import React from "react";
 
 const Pen2 = () => {
   return (

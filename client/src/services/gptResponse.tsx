@@ -8,7 +8,6 @@ export const getResponse = async ({
   imgCopy: ImgState;
   prop: string;
 }): Promise<{
-  error: boolean;
   res: string;
 }> => {
   const { chats } = useChat.getState();
@@ -37,9 +36,9 @@ export const getResponse = async ({
           ]
         : [prop]
     );
-    return { error: false, res: result.response.text() };
+    return {res: result.response.text() };
   } catch (err) {
     console.log(err);
-    return { error: true, res: "An unexpected error occurred" };
+    return {  res: "An unexpected error occurred" };
   }
 };

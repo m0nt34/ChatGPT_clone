@@ -1,4 +1,3 @@
-import React from "react";
 import style from "../../assets/styles/pages/signup.module.scss";
 import { SignUp } from "@clerk/clerk-react";
 

@@ -60,7 +60,7 @@ const Dashboard = () => {
       dbData: {},
       aiData: { inlineData: { data: "", mimeType: "" } },
     };
-    const { error, res } = await getResponse({ imgCopy, prop });
+    const { res } = await getResponse({ imgCopy, prop });
 
     setLoading(false);
     const modelReq = {

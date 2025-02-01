@@ -3,7 +3,7 @@ import { EditReq } from "../types/types";
 
 export const editChatTitle = async (userID: string, reqObj: EditReq) => {
   try {
-    const res = await axios.patch(
+    await axios.patch(
       `${import.meta.env.VITE_BACKEND_URL}/user/edit/${userID}`,
       reqObj
     );
